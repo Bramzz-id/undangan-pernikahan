@@ -7,5 +7,4 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: '/undangan-pernikahan/', // Mengatur base path sesuai nama repository GitHub
 })

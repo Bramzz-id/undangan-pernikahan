@@ -17,7 +17,8 @@ export default function RsvpSection({ guestName }) {
   const [userId] = useState(() => {
     let storedId = localStorage.getItem("wedding_user_id");
     if (!storedId) {
-      storedId = "usr_" + Math.random().toString(36).substring(2, 11) + Date.now();
+      storedId =
+        "usr_" + Math.random().toString(36).substring(2, 11) + Date.now();
       localStorage.setItem("wedding_user_id", storedId);
     }
     return storedId;
@@ -26,7 +27,7 @@ export default function RsvpSection({ guestName }) {
   // Cek apakah pengguna saat ini adalah Admin
   const [isAdmin, setIsAdmin] = useState(false);
 
- // 2. useEffect untuk pengecekan admin (gunakan string "1234" dan asynchrony/cleanup)
+  // 2. useEffect untuk pengecekan admin (gunakan string "1234" dan asynchrony/cleanup)
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get("admin") === "1234") {
@@ -35,7 +36,7 @@ export default function RsvpSection({ guestName }) {
   }, []);
 
   const [inputName, setInputName] = useState(
-    guestName !== "Bapak/Ibu/Saudara/i" ? guestName : ""
+    guestName !== "Bapak/Ibu/Saudara/i" ? guestName : "",
   );
   const [inputStatus, setInputStatus] = useState("Hadir");
   const [inputJumlah, setInputJumlah] = useState("1");
@@ -132,7 +133,10 @@ export default function RsvpSection({ guestName }) {
     setInputStatus(item.status);
     setInputJumlah(item.jumlah || "1");
     setInputMessage(item.message);
-    window.scrollTo({ top: document.getElementById("rsvp").offsetTop - 20, behavior: "smooth" });
+    window.scrollTo({
+      top: document.getElementById("rsvp").offsetTop - 20,
+      behavior: "smooth",
+    });
   };
 
   // Cancel Edit
@@ -151,9 +155,10 @@ export default function RsvpSection({ guestName }) {
       return;
     }
 
-    const confirmText = isAdmin && !isOwner 
-      ? `[ADMIN] Yakin ingin menghapus ucapan dari "${item.name}"?` 
-      : "Yakin ingin menghapus ucapan ini?";
+    const confirmText =
+      isAdmin && !isOwner
+        ? `[ADMIN] Yakin ingin menghapus ucapan dari "${item.name}"?`
+        : "Yakin ingin menghapus ucapan ini?";
 
     if (confirm(confirmText)) {
       const { error } = await supabase
@@ -170,7 +175,7 @@ export default function RsvpSection({ guestName }) {
     }
   };
 
-  const phoneAdmin = "6281234567890";
+  const phoneAdmin = "6285942521835";
   const waText = `Om Swastyastu, saya ${inputName || guestName} mengonfirmasi ${inputStatus} pada acara Pawiwahan. Ucapan: "${inputMessage}"`;
   const waUrl = `https://wa.me/${phoneAdmin}?text=${encodeURIComponent(waText)}`;
 
@@ -275,8 +280,8 @@ export default function RsvpSection({ guestName }) {
             {isSubmitting
               ? "Menyimpan..."
               : editingId
-              ? "Simpan Perubahan"
-              : "Kirim Ucapan"}
+                ? "Simpan Perubahan"
+                : "Kirim Ucapan"}
           </button>
           <a
             href={waUrl}

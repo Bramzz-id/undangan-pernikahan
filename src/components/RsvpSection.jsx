@@ -75,7 +75,7 @@ export default function RsvpSection({ guestName }) {
     setIsSubmitting(false);
   };
 
-  const phoneAdmin = "6281234567890";
+  const phoneAdmin = "6285942521835";
   const waText = `Om Swastyastu, saya ${inputName || guestName} mengonfirmasi ${inputStatus} pada acara Pawiwahan. Ucapan: "${inputMessage}"`;
   const waUrl = `https://wa.me/${phoneAdmin}?text=${encodeURIComponent(waText)}`;
 

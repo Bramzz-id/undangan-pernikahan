@@ -6,6 +6,7 @@ import CountdownSection from "./components/CountdownSection";
 import AcaraSection from "./components/AcaraSection";
 import HadiahSection from "./components/HadiahSection";
 import RsvpSection from "./components/RsvpSection";
+import GallerySection from "./components/GallerySection";
 
 export default function App() {
   const queryParams = new URLSearchParams(window.location.search);
@@ -63,6 +64,9 @@ export default function App() {
       <HadiahSection />
       <RsvpSection guestName={guestName} />
 
+      {/* Galeri */}
+      <GallerySection />
+      
       {/* Footer Salam */}
       <footer className="text-center py-12 border-t border-amber-900/40 text-amber-200/60 text-xs bg-[#0e0a08]">
         <p className="font-serif text-lg text-amber-300 font-bold mb-1">

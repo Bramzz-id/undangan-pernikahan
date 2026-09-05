@@ -1,54 +1,82 @@
 import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
+
+// Konfigurasi Supabase
+const SUPABASE_URL = "https://vazoynavuoyyphfeelfn.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_QFMtTFislu12n1M2gRGCfA_unIOxzIa";
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 export default function RsvpSection({ guestName }) {
-  const [wishes, setWishes] = useState(() => {
-    const savedWishes = localStorage.getItem("wedding_wishes");
-    if (savedWishes) {
-      try {
-        return JSON.parse(savedWishes);
-      } catch (e) {
-        console.error("Gagal parse localStorage", e);
-      }
-    }
-    return [
-      {
-        name: "I Wayan Sudiarta",
-        status: "Hadir",
-        jumlah: "1",
-        message:
-          "Om Swastyastu, selamat atas Pawiwahan Romeo & Juliet. Mogi bahagia lan dirgahayu.",
-      },
-    ];
-  });
-
-  useEffect(() => {
-    localStorage.setItem("wedding_wishes", JSON.stringify(wishes));
-  }, [wishes]);
+  const [wishes, setWishes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [inputName, setInputName] = useState(
-    guestName !== "Bapak/Ibu/Saudara/i" ? guestName : ""
+    guestName !== "Bapak/Ibu/Saudara/i" ? guestName : "",
   );
   const [inputStatus, setInputStatus] = useState("Hadir");
   const [inputJumlah, setInputJumlah] = useState("1");
   const [inputMessage, setInputMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmitWish = (e) => {
+  // 1. Fungsi fetchWishes yang menangani loading sekaligus
+  const fetchWishes = async () => {
+    const { data, error } = await supabase
+      .from("wedding_wishes")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error("Gagal mengambil ucapan:", error);
+    } else {
+      setWishes(data || []);
+    }
+  };
+
+  // 2. Panggil di useEffect tanpa memanggil `setState` sinkron di luar
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadInitialData = async () => {
+      setLoading(true);
+      await fetchWishes();
+      if (isMounted) setLoading(false);
+    };
+
+    loadInitialData();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  // 3. Simpan ucapan baru ke Supabase
+  const handleSubmitWish = async (e) => {
     e.preventDefault();
     if (!inputName || !inputMessage) return;
 
-    const newWish = {
-      name: inputName,
-      status: inputStatus,
-      jumlah: inputJumlah,
-      message: inputMessage,
-    };
+    setIsSubmitting(true);
 
-    setWishes([newWish, ...wishes]);
-    setInputMessage("");
+    const { error } = await supabase.from("wedding_wishes").insert([
+      {
+        name: inputName,
+        status: inputStatus,
+        jumlah: inputStatus === "Hadir" ? inputJumlah : null,
+        message: inputMessage,
+      },
+    ]);
+
+    if (error) {
+      alert("Gagal mengirim ucapan, coba lagi nanti.");
+      console.error(error);
+    } else {
+      setInputMessage("");
+      await fetchWishes(); // Refresh daftar ucapan
+    }
+    setIsSubmitting(false);
   };
 
   const phoneAdmin = "6281234567890";
-  const waText = `Om Swastyastu, saya ${inputName || guestName} mengonfirmasi ${inputStatus} pada acara Pawiwahan Romeo & Juliet. Ucapan: "${inputMessage}"`;
+  const waText = `Om Swastyastu, saya ${inputName || guestName} mengonfirmasi ${inputStatus} pada acara Pawiwahan. Ucapan: "${inputMessage}"`;
   const waUrl = `https://wa.me/${phoneAdmin}?text=${encodeURIComponent(waText)}`;
 
   return (
@@ -128,9 +156,10 @@ export default function RsvpSection({ guestName }) {
         <div className="flex flex-col sm:flex-row gap-3 pt-2">
           <button
             type="submit"
-            className="flex-1 bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold py-3.5 rounded-xl text-xs transition-colors cursor-pointer shadow-md"
+            disabled={isSubmitting}
+            className="flex-1 bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold py-3.5 rounded-xl text-xs transition-colors cursor-pointer shadow-md disabled:opacity-50"
           >
-            Kirim Ucapan
+            {isSubmitting ? "Mengirim..." : "Kirim Ucapan"}
           </button>
           <a
             href={waUrl}
@@ -143,41 +172,53 @@ export default function RsvpSection({ guestName }) {
         </div>
       </form>
 
+      {/* Daftar Komentar Publik */}
       <div className="space-y-3 max-h-96 overflow-y-auto pr-1">
         <h3 className="text-xs font-bold uppercase tracking-wider text-amber-400 mb-3">
           Daftar Pangastuti & Doa ({wishes.length})
         </h3>
-        {wishes.map((item, index) => (
-          <div
-            key={index}
-            className="bg-[#1c1410] p-4 rounded-2xl shadow-md border border-amber-900/50"
-          >
-            <div className="flex justify-between items-center mb-1.5">
-              <div className="flex items-center gap-2">
-                <h4 className="font-bold text-xs text-amber-200">
-                  {item.name}
-                </h4>
-                {item.status === "Hadir" && item.jumlah && (
-                  <span className="text-[10px] bg-amber-950/80 text-amber-400 px-2 py-0.5 rounded-md border border-amber-800/60 font-mono">
-                    👥 {item.jumlah} Orang
-                  </span>
-                )}
+
+        {loading ? (
+          <p className="text-xs text-amber-100/50 text-center py-4">
+            Memuat ucapan...
+          </p>
+        ) : wishes.length === 0 ? (
+          <p className="text-xs text-amber-100/50 text-center py-4">
+            Belum ada ucapan. Jadilah yang pertama!
+          </p>
+        ) : (
+          wishes.map((item) => (
+            <div
+              key={item.id}
+              className="bg-[#1c1410] p-4 rounded-2xl shadow-md border border-amber-900/50"
+            >
+              <div className="flex justify-between items-center mb-1.5">
+                <div className="flex items-center gap-2">
+                  <h4 className="font-bold text-xs text-amber-200">
+                    {item.name}
+                  </h4>
+                  {item.status === "Hadir" && item.jumlah && (
+                    <span className="text-[10px] bg-amber-950/80 text-amber-400 px-2 py-0.5 rounded-md border border-amber-800/60 font-mono">
+                      👥 {item.jumlah} Orang
+                    </span>
+                  )}
+                </div>
+                <span
+                  className={`text-[10px] px-2.5 py-0.5 rounded-full font-semibold ${
+                    item.status === "Hadir"
+                      ? "bg-emerald-950 text-emerald-300 border border-emerald-700"
+                      : "bg-rose-950 text-rose-300 border border-rose-700"
+                  }`}
+                >
+                  {item.status}
+                </span>
               </div>
-              <span
-                className={`text-[10px] px-2.5 py-0.5 rounded-full font-semibold ${
-                  item.status === "Hadir"
-                    ? "bg-emerald-950 text-emerald-300 border border-emerald-700"
-                    : "bg-rose-950 text-rose-300 border border-rose-700"
-                }`}
-              >
-                {item.status}
-              </span>
+              <p className="text-xs text-amber-100/70 leading-relaxed font-light">
+                {item.message}
+              </p>
             </div>
-            <p className="text-xs text-amber-100/70 leading-relaxed font-light">
-              {item.message}
-            </p>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
 export default function AcaraSection() {
-  const googleCalendarUrl =
-    "https://calendar.app.google/mkwT8iZQG6kFG6v86";
+  const googleCalendarUrl = "https://calendar.app.google/mkwT8iZQG6kFG6v86";
 
   return (
     <section id="acara" className="py-20 px-6 max-w-4xl mx-auto text-center">
@@ -9,7 +8,7 @@ export default function AcaraSection() {
       </h2>
       <div className="w-16 h-0.5 bg-amber-600/50 mx-auto mb-10" />
 
-      <div className="max-w-md mx-auto mb-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
         <div className="bg-[#1c1410]/80 p-8 rounded-3xl shadow-xl border border-amber-600/40 hover:border-amber-500 transition-all">
           <div className="w-12 h-12 bg-amber-950 text-amber-400 rounded-full flex items-center justify-center text-xl mx-auto mb-4 border border-amber-600/60">
             🔱
@@ -20,10 +19,21 @@ export default function AcaraSection() {
           <p className="text-xs text-amber-100/90 mb-1 font-semibold">
             Jumat, 9 Oktober 2026
           </p>
-          <p className="text-xs text-amber-200/60">08.00 - Selesai</p>
+          <p className="text-xs text-amber-200/60">08.00 WITA - Selesai</p>
         </div>
 
-       
+        <div className="bg-[#1c1410]/80 p-8 rounded-3xl shadow-xl border border-amber-600/40 hover:border-amber-500 transition-all">
+          <div className="w-12 h-12 bg-amber-950 text-amber-400 rounded-full flex items-center justify-center text-xl mx-auto mb-4 border border-amber-600/60">
+            🌺
+          </div>
+          <h3 className="text-xl font-serif font-bold text-amber-300 mb-2">
+            Resepsi
+          </h3>
+          <p className="text-xs text-amber-100/90 mb-1 font-semibold">
+            Jumat, 9 Oktober 2026
+          </p>
+          <p className="text-xs text-amber-200/60">16.00 WITA - Selesai</p>
+        </div>
       </div>
 
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4">

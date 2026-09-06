@@ -1,21 +1,30 @@
-import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import React, { useState } from "react";
+import { X } from "lucide-react";
+import foto1 from "../assets/foto-pernikahan-1.jpeg";
+import foto2 from "../assets/foto-pernikahan-2.jpeg";
+import foto3 from "../assets/foto-pernikahan-3.jpeg";
+import foto4 from "../assets/foto-pernikahan-4.jpeg";
+import foto5 from "../assets/foto-pernikahan-5.jpeg";
+import foto6 from "../assets/foto-pernikahan-6.jpeg";
 
 const GallerySection = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   // Ganti URL gambar di bawah dengan foto-foto kamu
   const galleryImages = [
-    { id: 1, src: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800', alt: 'Foto Prewedding 1' },
-    { id: 2, src: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800', alt: 'Foto Prewedding 2' },
-    { id: 3, src: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800', alt: 'Foto Prewedding 3' },
-    { id: 4, src: 'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=800', alt: 'Foto Prewedding 4' },
-    { id: 5, src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=800', alt: 'Foto Prewedding 5' },
-    { id: 6, src: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800', alt: 'Foto Prewedding 6' },
+    { id: 1, src: foto1, alt: "Foto Prewedding 1" },
+    { id: 2, src: foto2, alt: "Foto Prewedding 2" },
+    { id: 3, src: foto3, alt: "Foto Prewedding 3" },
+    { id: 4, src: foto4, alt: "Foto Prewedding 4" },
+    { id: 5, src: foto5, alt: "Foto Prewedding 5" },
+    { id: 6, src: foto6, alt: "Foto Prewedding 6" },
   ];
 
   return (
-    <section id="galeri" className="scroll-mt-10 py-20 px-6 max-w-6xl mx-auto text-center">
+    <section
+      id="galeri"
+      className="scroll-mt-10 py-20 px-6 max-w-6xl mx-auto text-center"
+    >
       <span className="text-amber-600 font-serif italic text-lg tracking-widest uppercase block mb-2">
         Momen Bahagia
       </span>
@@ -65,7 +74,7 @@ const GallerySection = () => {
               src={selectedImage}
               alt="Preview"
               className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()} 
+              onClick={(e) => e.stopPropagation()}
             />
           </div>
         </div>

@@ -1,3 +1,6 @@
+import foto1 from "../assets/foto-mempelai-cowok.jpeg";
+import foto2 from "../assets/foto-mempelai-cewek.jpeg";
+
 export default function MempelaiSection() {
   return (
     <section id="mempelai" className="py-20 px-6 max-w-4xl mx-auto text-center relative">
@@ -21,11 +24,13 @@ export default function MempelaiSection() {
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-950 text-amber-300 text-[10px] px-4 py-1 rounded-full font-bold border border-amber-500 uppercase tracking-widest">
             Purusa (Pria)
           </div>
-          <div className="w-28 h-28 mx-auto mt-2 mb-5 rounded-full p-1 bg-gradient-to-tr from-amber-600 via-amber-300 to-amber-700 shadow-xl">
+          {/* Ditambahkan overflow-hidden pada pembungkus lingkaran */}
+          <div className="w-28 h-28 mx-auto mt-2 mb-5 rounded-full p-1 bg-gradient-to-tr from-amber-600 via-amber-300 to-amber-700 shadow-xl overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop"
-              alt="Romeo"
-              className="w-full h-full object-cover rounded-full border-2 border-[#1c1410]"
+              src={foto1}
+              alt="Respawan"
+              /* scale-150 memperbesar foto 1.5x, object-top memfokuskan ke bagian wajah/atas */
+              className="w-full h-full object-cover object-top scale-380 rounded-full border-2 border-[#1c1410]"
             />
           </div>
           <h3 className="text-2xl font-serif font-bold text-amber-200">
@@ -43,11 +48,13 @@ export default function MempelaiSection() {
           <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-950 text-amber-300 text-[10px] px-4 py-1 rounded-full font-bold border border-amber-500 uppercase tracking-widest">
             Pradana (Wanita)
           </div>
-          <div className="w-28 h-28 mx-auto mt-2 mb-5 rounded-full p-1 bg-gradient-to-tr from-amber-600 via-amber-300 to-amber-700 shadow-xl">
+          {/* Ditambahkan overflow-hidden pada pembungkus lingkaran */}
+          <div className="w-28 h-28 mx-auto mt-2 mb-5 rounded-full p-1 bg-gradient-to-tr from-amber-600 via-amber-300 to-amber-700 shadow-xl overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=300&auto=format&fit=crop"
-              alt="Juliet"
-              className="w-full h-full object-cover rounded-full border-2 border-[#1c1410]"
+              src={foto2}
+              alt="Ayu"
+              /* scale-150 memperbesar foto 1.5x, object-top memfokuskan ke bagian wajah/atas */
+              className="w-full h-full object-cover object-top scale-350 rounded-full border-2 border-[#1c1410]"
             />
           </div>
           <h3 className="text-2xl font-serif font-bold text-amber-200">

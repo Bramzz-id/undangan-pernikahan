@@ -7,7 +7,7 @@ import AcaraSection from "./components/AcaraSection";
 import HadiahSection from "./components/HadiahSection";
 import RsvpSection from "./components/RsvpSection";
 import GallerySection from "./components/GallerySection";
-import baliMusic from "./assets/bali-music.mp3";
+import baliMusic from "./assets/bali-music2.mp3";
 
 export default function App() {
   const queryParams = new URLSearchParams(window.location.search);

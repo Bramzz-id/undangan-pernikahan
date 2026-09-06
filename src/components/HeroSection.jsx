@@ -9,7 +9,7 @@ export default function HeroSection({ guestName, onOpenInvitation }) {
           Pawiwahan / Pernikahan Adat Bali
         </p>
         <h1 className="text-4xl md:text-6xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-amber-400 to-amber-100 tracking-wide drop-shadow-2xl mt-2">
-          Romeo & Juliet
+          Respawan & Ayu
         </h1>
         <div className="flex items-center justify-center gap-2 mt-3">
           <div className="w-12 h-[1px] bg-amber-500/60" />

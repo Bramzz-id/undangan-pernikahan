@@ -4,7 +4,7 @@ export default function Navigation() {
     { href: "#acara", icon: "📅", label: "Acara" },
     { href: "#hadiah", icon: "🎁", label: "Hadiah" },
     { href: "#rsvp", icon: "💌", label: "RSVP" },
-    { href: "#galeri", icon: "💌", label: "Galeri" },
+    { href: "#galeri", icon: "🖼️", label: "Galeri" },
   ];
 
   return (

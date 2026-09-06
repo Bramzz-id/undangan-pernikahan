@@ -7,24 +7,25 @@ import AcaraSection from "./components/AcaraSection";
 import HadiahSection from "./components/HadiahSection";
 import RsvpSection from "./components/RsvpSection";
 import GallerySection from "./components/GallerySection";
+import baliMusic from "./assets/bali-music.mp3";
 
 export default function App() {
   const queryParams = new URLSearchParams(window.location.search);
   const guestName = queryParams.get("to") || "Bapak/Ibu/Saudara/i";
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef(
-    new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"),
-  );
+  const audioRef = useRef(new Audio(baliMusic));
 
-  const toggleAudio = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setIsPlaying(!isPlaying);
-  };
+ const toggleAudio = () => {
+  if (isPlaying) {
+    audioRef.current.pause();
+  } else {
+    audioRef.current.play().catch((error) => {
+      console.error("Gagal memutar audio:", error);
+    });
+  }
+  setIsPlaying(!isPlaying);
+};
 
   const handleOpenInvitation = () => {
     document.getElementById("mempelai")?.scrollIntoView({ behavior: "smooth" });
@@ -66,11 +67,11 @@ export default function App() {
 
       {/* Galeri */}
       <GallerySection />
-      
+
       {/* Footer Salam */}
       <footer className="text-center py-12 border-t border-amber-900/40 text-amber-200/60 text-xs bg-[#0e0a08]">
         <p className="font-serif text-lg text-amber-300 font-bold mb-1">
-          Romeo & Juliet
+          Respawan & Ayu
         </p>
         <p className="text-xs text-amber-400 font-serif italic mb-2">
           Om Shanti Shanti Shanti Om

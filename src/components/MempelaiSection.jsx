@@ -29,13 +29,13 @@ export default function MempelaiSection() {
             />
           </div>
           <h3 className="text-2xl font-serif font-bold text-amber-200">
-            Romeo Montague, S.Kom
+            Komang Respawan
           </h3>
           <p className="text-[11px] text-amber-500 font-semibold my-2 uppercase tracking-wider">
-            Putra Pradana Dari
+            Putra Ke VIII dari
           </p>
-          <p className="text-xs text-amber-100/60">Bpk. Montague & Ibu Montague</p>
-          <p className="text-[11px] text-amber-400/80 mt-1">Banjar Griya, Denpasar</p>
+          <p className="text-xs text-amber-100/60">Bpk. Ketut Kerame & Ibu. Made Mariani</p>
+          <p className="text-[11px] text-amber-400/80 mt-1">Desa Jagaraga, Sawan, Buleleng</p>
         </div>
 
         {/* Wanita */}
@@ -51,13 +51,13 @@ export default function MempelaiSection() {
             />
           </div>
           <h3 className="text-2xl font-serif font-bold text-amber-200">
-            Juliet Capulet, S.T
+            Kadek Ayu Suci Suparmi
           </h3>
           <p className="text-[11px] text-amber-500 font-semibold my-2 uppercase tracking-wider">
-            Putri Pradana Dari
+            Putri Ke VI dari
           </p>
-          <p className="text-xs text-amber-100/60">Bpk. Capulet & Ibu Capulet</p>
-          <p className="text-[11px] text-amber-400/80 mt-1">Banjar Pengosekan, Ubud</p>
+          <p className="text-xs text-amber-100/60">Bpk. Putu Pasek Wirawan & Ibu. Cening Suci Ningsih </p>
+          <p className="text-[11px] text-amber-400/80 mt-1">Desa Menyali, Sawan, Buleleng</p>
         </div>
       </div>
     </section>

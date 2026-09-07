@@ -11,7 +11,10 @@ export default function HadiahSection() {
   };
 
   return (
-    <section id="hadiah" className="py-16 px-6 bg-[#18110d] text-center border-t border-amber-900/40">
+    <section
+      id="hadiah"
+      className="py-16 px-6 bg-[#18110d] text-center border-t border-amber-900/40"
+    >
       <div className="max-w-md mx-auto">
         <div className="text-2xl text-amber-500 mb-1">🎁</div>
         <h2 className="text-3xl font-serif font-bold text-amber-300 mb-2">
@@ -26,7 +29,9 @@ export default function HadiahSection() {
           onClick={() => setIsGiftOpen(!isGiftOpen)}
           className="bg-gradient-to-r from-amber-700 to-amber-800 text-stone-950 font-bold text-xs px-8 py-3.5 rounded-full shadow-xl hover:brightness-110 transition-all cursor-pointer border border-amber-400/50"
         >
-          {isGiftOpen ? "Tutup Detail Rekening" : "💳 Transfer / Amplop Digital"}
+          {isGiftOpen
+            ? "Tutup Detail Rekening"
+            : "💳 Transfer / Amplop Digital"}
         </button>
 
         {isGiftOpen && (
@@ -36,11 +41,13 @@ export default function HadiahSection() {
                 Bank BCA
               </p>
               <p className="text-2xl font-mono font-bold text-amber-200 tracking-wider">
-                1234 5678 90
+                7721446089
               </p>
-              <p className="text-xs text-amber-100/60 mt-1">a.n. Romeo Montague</p>
+              <p className="text-xs text-amber-100/60 mt-1">
+                Komang Respawan
+              </p>
               <button
-                onClick={() => copyToClipboard("1234567890")}
+                onClick={() => copyToClipboard("7721446089")}
                 className="mt-4 bg-amber-600 hover:bg-amber-500 text-stone-950 font-bold text-[11px] px-5 py-2.5 rounded-xl transition-colors cursor-pointer shadow-md"
               >
                 {copiedBank ? "✓ Berhasil Disalin" : "📋 Salin No. Rekening"}

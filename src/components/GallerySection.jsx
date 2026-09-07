@@ -6,6 +6,9 @@ import foto3 from "../assets/foto-pernikahan-3.jpeg";
 import foto4 from "../assets/foto-pernikahan-4.jpeg";
 import foto5 from "../assets/foto-pernikahan-5.jpeg";
 import foto6 from "../assets/foto-pernikahan-6.jpeg";
+import foto7 from "../assets/foto-pernikahan-7.jpeg";
+import foto8 from "../assets/foto-pernikahan-8.jpeg";
+import foto9 from "../assets/foto-pernikahan-9.jpeg";
 
 const GallerySection = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -18,6 +21,9 @@ const GallerySection = () => {
     { id: 4, src: foto4, alt: "Foto Prewedding 4" },
     { id: 5, src: foto5, alt: "Foto Prewedding 5" },
     { id: 6, src: foto6, alt: "Foto Prewedding 6" },
+    { id: 7, src: foto7, alt: "Foto Prewedding 7" },
+    { id: 8, src: foto8, alt: "Foto Prewedding 8" },
+    { id: 9, src: foto9, alt: "Foto Prewedding 9" },
   ];
 
   return (

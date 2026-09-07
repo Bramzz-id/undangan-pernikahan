@@ -3,7 +3,10 @@ import foto2 from "../assets/foto-mempelai-cewek.jpeg";
 
 export default function MempelaiSection() {
   return (
-    <section id="mempelai" className="py-20 px-6 max-w-4xl mx-auto text-center relative">
+    <section
+      id="mempelai"
+      className="py-20 px-6 max-w-4xl mx-auto text-center relative"
+    >
       <div className="text-amber-500 text-3xl mb-1">🪷</div>
       <h2 className="text-3xl font-serif font-bold text-amber-300 mb-2">
         Palemahan Pawiwahan
@@ -29,8 +32,8 @@ export default function MempelaiSection() {
             <img
               src={foto1}
               alt="Respawan"
-              /* scale-150 memperbesar foto 1.5x, object-top memfokuskan ke bagian wajah/atas */
-              className="w-full h-full object-cover object-top scale-380 rounded-full border-2 border-[#1c1410]"
+              /* Gunakan translate-x-[...] untuk geser kanan/kiri & translate-y-[...] untuk naik/turun */
+              className="w-full h-full object-cover scale-[3] -translate-x-[6%] translate-y-[65%] rounded-full border-2 border-[#1c1410]"
             />
           </div>
           <h3 className="text-2xl font-serif font-bold text-amber-200">
@@ -39,8 +42,12 @@ export default function MempelaiSection() {
           <p className="text-[11px] text-amber-500 font-semibold my-2 uppercase tracking-wider">
             Putra Ke VIII dari
           </p>
-          <p className="text-xs text-amber-100/60">Bpk. Ketut Kerame & Ibu. Made Mariani</p>
-          <p className="text-[11px] text-amber-400/80 mt-1">Desa Jagaraga, Sawan, Buleleng</p>
+          <p className="text-xs text-amber-100/60">
+            Bpk. Ketut Kerame & Ibu. Made Mariani
+          </p>
+          <p className="text-[11px] text-amber-400/80 mt-1">
+            Desa Jagaraga, Sawan, Buleleng
+          </p>
         </div>
 
         {/* Wanita */}
@@ -63,8 +70,12 @@ export default function MempelaiSection() {
           <p className="text-[11px] text-amber-500 font-semibold my-2 uppercase tracking-wider">
             Putri Ke VI dari
           </p>
-          <p className="text-xs text-amber-100/60">Bpk. Putu Pasek Wirawan & Ibu. Cening Suci Ningsih </p>
-          <p className="text-[11px] text-amber-400/80 mt-1">Desa Menyali, Sawan, Buleleng</p>
+          <p className="text-xs text-amber-100/60">
+            Bpk. Putu Pasek Wirawan & Ibu. Cening Suci Ningsih{" "}
+          </p>
+          <p className="text-[11px] text-amber-400/80 mt-1">
+            Desa Menyali, Sawan, Buleleng
+          </p>
         </div>
       </div>
     </section>
